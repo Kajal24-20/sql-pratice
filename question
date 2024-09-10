@@ -1,0 +1,109 @@
+1.Perform the following tasks:
+a)a. Create Student table with following attributes (STUDENT_ID , FIRST_NAME, LAST_NAME, PHONE_NUMBER, MARKS, COURSE_ID).
+ANS :
+SQL> CREATE TABLE STUDENT_TABLE (STUDENT_ID INT PRIMARY KEY,FIRST_NAME VARCHAR(50),LAST_NAME VARCHAR
+(50),PHONE_NO INT,MARKS INT,COURSE_ID INT);
+Table created.
+
+b)b. Create Course table with following attributes (COURSE_ID, COURSE_NAME).
+ANS:  
+SQL> CREATE TABLE COURSE(COURSE_ID INT PRIMARY KEY,COURSE_NAME VARCHAR(50));
+Table created.
+c)c. Write a SQL statement to insert 8 records with your own value into the tables.
+       INSERT INTO STUDENT_TABLEVALUES(101,'KAJAL','PRASAD',7775689654,80,310);
+INSERT INTO STUDENT_TABLE VALUES(102,'VIKAS','PRAJAPATI',8505896514,85,311);
+INSERT INTO STUDENT_TABLE VALUES(103,'SANTO','PAL',8978674743,80,313);
+INSERT INTO STUDENT_TABLE VALUES(104,'YASH','HARDAS',8978674543,78,314);
+INSERT INTO STUDENT_TABLE VALUES(105,'VANSH','SINGH',8978674743,80,315);
+INSERT INTO STUDENT_TABLE VALUES(106,'ADIT','BHOIR',8978674543,78,316);
+INSERT INTO STUDENT_TABLE VALUES(107,'PRASAD','SINGH',8978674743,80,317);
+INSERT INTO STUDENT_TABLE VALUES(108,'ANJAL','SINGH',8978674743,80,318);
+
+D). Write a query to get the number of students with the same course.
+SELECT  COURSE_ID, COUNT(*) AS student_count
+FROM STUDENT_TABLE
+GROUP BY COURSE_ID;
+
+            f). Write a query to get the student name, course name and marks of the         students.
+        SELECT STUDENT_NAME,COURSE_NAME,MARKS
+       FROM STUDENT_TABLE;
+g). Write a query to get the Average marks of students course wise.
+       SELECT COURSE_ID, AVG(MARKS) AS average_marks
+       FROM STUDENT_MARKS_TABLE 
+        GROUP BY COURSE_ID;
+2.Create database for hospital management system & Perform the following tasks:
+a. Create HEALTH CARE WORKERS table with following attributes (EMPLOYEE_ID , FIRST_NAME, LAST_NAME,EMAIL, PHONE_NUMBER, HIRE_DATE, SALARY, DESIGNATION).
+CREATE TABLE HEALTH_CARE_WORKER (
+ EMP_ID INT PRIMARY KEY, 
+FIRST_NAME VARCHAR(50), 
+LAST_NAME VARCHAR(50), 
+EMAIL VARCHAR(70),
+ PHONE_NO INT,
+ HIRE_DATE DATE,
+ SALARY INT, 
+DESIGNATION VARCHAR(50) );
+b. Create PATIENT table with following attributes (PATIENT_ID,NAME, PHONE_NUMBER).
+CREATE TABLE PATIENT (
+PATIENT_ID INT PRIMARY KEY,
+NAME VARCHAR(40),
+PHONE_NUMBER INT);
+c. Write a SQL statement to insert 10 records with your own value into the tables.
+INSERT INTO PATIENT VALUES(01,’SACHIN PRASAD’,7505354678);
+INSERT INTO PATIENT VALUES(02,’ARCHI PRAJAPATI’,653546767);
+INSERT INTO PATIENT VALUES(03,’P,OONAM ‘,56705354678);
+INSERT INTO PATIENT VALUES(04,’ANUJ SADA’,653546767);
+INSERT INTO PATIENT VALUES(05,’DON  KKR’,7705354676);
+INSERT INTO PATIENT VALUES(06,’KAJU SOD’,6535676667);
+INSERT INTO PATIENT VALUES(07,’MASSIMO ‘,6995354678);
+INSERT INTO PATIENT VALUES(08,’DIVID’,653546767);
+INSERT INTO PATIENT VALUES(09,’RIYA PAL ‘,6995354678);
+INSERT INTO PATIENT VALUES(010,’DIVID’,653546767);
+ANS:
+
+
+
+
+d. Write a query to get the names (first_name, last_name),Designation, salary.
+SEELCT FIRST_NAME,LAST_NAME,DESIGNATION,SALARY
+FROM HEALTH_CARE_WORKER;
+e. Write a query to get the number of employees with the same Designation
+SELECT designation, COUNT(*) AS NO_OF_EMP
+FROM employees
+GROUP BY designation;
+f. Write a query to get employee name who are getting salary more than 25000.
+SELECT ENAME 
+FROM EMP
+WHERE SAL>25000;
+g. Fetch HEALTH CARE WORKERS name using their employee id.
+SELECT NAME
+FROM EMP
+WHERE DESIGNATION = 'HEALTH CARE WORKER' AND EMP_ID  IN(10,20,30,40);
+	
+3.Consider two tables, customers and orders, with the following structures: 
+
+Customers Table: customer_id (Primary Key) first_name Last_name 
+Orders Table: order_id (Primary Key) customer_id (Foreign Key) order_date Total_amount 
+Write an SQL query to retrieve the first and last names of customers along with the order date and total amount of their orders. 
+ANS:
+SELECT 
+CUSTOMERS.LAST_NAME
+    CUSTOMERS.LAST_NAME, 
+    ORDERS.ORDER_DATE, 
+    ORDERS.TOTAL_AMOUNT
+FROM 
+    CUSTOMERS
+INNER JOIN 
+    ORDERS ON CUSTOMERS.CUSTOMER_ID = ORDERS.CUSTOMER_ID;
+
+4.Consider two tables, departments and employees, with the following structures: 
+Departments Table: department_id (Primary Key) department_name 
+Employees Table: employee_id (Primary Key) first_name last_name department_id (Foreign Key) 
+Write an SQL query to retrieve a list of all departments and the names of employees who belong to each department. Use a LEFT JOIN to include departments that have no employees.
+ANS :
+SELECT 
+    DEPARTMENTS.DEPARTMENT_NAME, 
+    EMPLOYEES.FIRST_NAME, 
+    EMPLOYEES.LAST_NAME
+FROM   DEPARTMENTS
+LEFT JOIN 
+EMPLOYEES ON DEPARTMENTS.DEPARTMENT_ID = EMPLOYEES.DEPARTMENT_ID;
